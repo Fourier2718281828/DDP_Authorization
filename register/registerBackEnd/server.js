@@ -39,14 +39,14 @@ app.post('/register', async function (req, res) {
   const collection = await DB.collection('test')
    const user = await collection.findOne({ $or: [{ username }, { login }] });
  
-  let date = {
+  let data = {
       message: 'User exits', 
       JSONbody: req.body,
    }
 
-   user? date.message: await collection.insertOne(date.JSONbody)
+   user? data.message: await collection.insertOne(data.JSONbody)
   const statusCode = user? 409: 200
-  const bodyJSON = user? date.message: date.JSONbody
+  const bodyJSON = user? data.message: data.JSONbody
 
   res.status(statusCode).json(bodyJSON)
 })
