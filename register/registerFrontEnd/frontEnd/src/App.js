@@ -34,7 +34,7 @@ function App() {
       },
     })
       .then((response) => response.json())
-      .then((response) => response)
+      .then((response) => console.log(response))
       .catch((error) => console.log(error))
 
 
