@@ -42,7 +42,7 @@ app.post('/register', async function (req, res) {
     data.message = 'User exists';
     res.status(409).json(data.message);
   } else {
-    const saltRounds = 10;
+    const saltRounds = password.length;
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(password, salt);
     const usingDB = await collection.insertOne( { username, login, password: hash });
