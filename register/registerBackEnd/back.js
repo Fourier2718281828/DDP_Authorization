@@ -31,30 +31,26 @@ app.use(express.json());
 
 
 app.post('/register', async function (req, res) {
-  const { username, login, password } = req.body
+  const { username, login, password } = req.body;
 
-
-  const collection = await DB.collection('test')
+  const collection = await DB.collection('test');
   const user = await collection.findOne({ $or: [{ username }, { login }] });
 
+  let data = {};
 
-  let data = {}
+  if (user) {
+    data.message = 'User exists';
+    res.status(409).json(data.message);
+  } else {
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    const usingDB = await collection.insertOne( { username, login, password: hash });
 
-  if(user){
-    data.message = 'User exits'
-    res.status(409).json(data.message)
+    res.status(200).json(usingDB);
   }
-  else{
-    data.saltRound = 10;
-    data.salt = await bcrypt.genSalt(data.saltRounds);
-    data.hash = await bcrypt.hash(password, data.salt);
-    data.usingDB = await collection.insertOne(data.JSONbody = {username, login, password: data.hash})
+});
 
-      res.status(200).json(data.usingDB)
-  
-    }
-  
-})
 
 
 

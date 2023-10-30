@@ -42,7 +42,7 @@ app.post('/login', async function(req, res){
       data.message = data.success ? 'Successful login' : 'Login failed';
     } else {
       data.success = false;
-      data.message = 'Uer is not found';
+      data.message = 'User is not found';
     }
 
     res.status(data.success ? 200 : 409).json(data);

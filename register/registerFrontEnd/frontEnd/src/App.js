@@ -32,30 +32,30 @@ function App() {
     let errorNetwork={};
     e.preventDefault();
     if( !state.username){
-      errorNetwork.usernameError = 'User is not defined'
+      errorNetwork.usernameError = 'The username is empty'
     }
     if( !state.login){
-      errorNetwork.loginError = 'Login is not defined'
+      errorNetwork.loginError = 'The login is empty'
       //console.log(errorNetwork.login)
     }
     if( !state.password){
-      errorNetwork.passwordError = 'Password is not defined'
+      errorNetwork.passwordError = 'The password is empty'
     }
     else if(state.password !== state.password_confirmation){
-     errorNetwork.passwordMatchError = 'Password_confirmation != Password'
+     errorNetwork.passwordMatchError = 'Password mismatch'
     }
     else{
       setError(null || {})
     }
    if(!state.password_confirmation){
-    errorNetwork.passwordConfirmationError = 'Password_confirmation is not defined'
+    errorNetwork.passwordConfirmationError = 'The password_confirmation is empty'
    }
 
    if(state.password.length>10 ){
     errorNetwork.passwordStateError = 'Password is  more 10 symbol'
    }
 
-    //  || !state.login || !state.password || !state.password_confirmation? console.log('Error')
+  
   
     if(Object.keys(errorNetwork).length>0){
         return setError(errorNetwork)
