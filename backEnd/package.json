@@ -1,8 +1,8 @@
 {
-  "name": "login-back-end",
+  "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "login.js",
+  "main": "backEnd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon login.js"
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongodb": "^6.1.0",
